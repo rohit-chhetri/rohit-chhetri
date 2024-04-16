@@ -1,23 +1,32 @@
+/* Student Management System Proto-type in C Using File Functions */
+/* Compiler Used: Dev C++ (Windows) */
+/* Header Files */
 #include<stdio.h>
 #include<stdlib.h>
+
+/* Student Structure */
 typedef struct student
 {
 	int roll;
 	char name[100];
 }student;
+
+/* Global Variables */
 FILE *fp, *ft;
-char ch, *fname="students.txt";
-void table_head()
+char ch, *fname="students.txt"; // change name of this file according to your need. This is your db file.
+
+/* User-defined functions */
+void table_head() // to use heading for Tabular representation of data
 {
 	printf("\n Roll \t Name");
 	printf("\n------------------------------------------------------");
 }
-void update_files()
+void update_files() // to remove existing file and renaming temporary file
 {
 	remove(fname);
 	rename("temp.txt", fname);
 }
-int get_roll_number()
+int get_roll_number() // getting next roll number for new student
 {
 	student s;
 	s.roll = 0;
@@ -27,7 +36,7 @@ int get_roll_number()
 	fclose(fp);
 	return s.roll+1;
 }
-void insert_student(struct student s)
+void insert_student(struct student s) 
 {
 	fp = fopen(fname, "a");
 	if(fp!=NULL) 
